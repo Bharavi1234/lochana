@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    background-color: #1a0710;
+    color: #fff0f5;
+    font-family: 'Quicksand', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Glassmorphism card styles */
+.glass-card {
+  background: rgba(26, 7, 16, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 143, 171, 0.22);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 35px rgba(224, 87, 128, 0.15);
+}
+
+.glass-card-subtle {
+  background: rgba(255, 240, 245, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(240, 201, 160, 0.2);
+}
+
+/* Shimmer gradient text animation */
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    #fff0f5 0%,
+    #ff8fab 25%,
+    #f0c9a0 50%,
+    #ff8fab 75%,
+    #fff0f5 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer 5s ease-in-out infinite;
+}
+
+/* Subtle cinematic vignette overlay */
+.vignette {
+  background: radial-gradient(
+    circle at center,
+    transparent 40%,
+    rgba(18, 4, 11, 0.4) 75%,
+    rgba(10, 2, 6, 0.8) 100%
+  );
+  pointer-events: none;
+}
+
+/* Noise/grain overlay for a warm filmic texture */
+.film-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Accessible reduced motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .text-shimmer {
+    animation: none !important;
+    background: #ff8fab;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+}
